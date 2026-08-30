@@ -1,0 +1,9 @@
+{
+  "name": "exprove-passport-limited",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Exprove Passport Limited — static site + serverless admin API",
+  "engines": {
+    "node": ">=18.x"
+  }
+}

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Passport Renewal — Exprove Passport Limited</title>
+  <meta name="description" content="Renew your Ghana passport with Exprove Passport Limited. Fast, reliable processing in Ghana."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="forms.css"/>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <style>
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,31,18,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200,168,75,0.2);
+    }
+    .nav-container {
+      max-width: 1240px; margin: 0 auto; padding: 0 32px;
+      height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .logo-icon svg { width: 44px; height: 44px; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-main { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; color: #ffffff; letter-spacing: 2px; line-height: 1; }
+    .logo-sub { font-size: 0.52rem; font-weight: 600; letter-spacing: 3px; color: #e2c97e; text-transform: uppercase; margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.3px; transition: 0.3s ease; }
+    .nav-links a:hover { color: #e2c97e; }
+    .btn-nav { background: linear-gradient(135deg, #c8a84b, #a08530); color: #0d1f12; font-weight: 700; font-size: 0.85rem; padding: 10px 24px; border-radius: 50px; text-decoration: none; transition: 0.3s ease; letter-spacing: 0.3px; }
+    .btn-nav:hover { background: #e2c97e; transform: translateY(-1px); }
+    .biz-footer { background: #0d1f12; padding: 32px; text-align: center; }
+    .biz-footer p { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
+    .biz-footer a { color: #e2c97e; text-decoration: none; font-weight: 600; }
+    .biz-footer a:hover { color: #ffffff; }
+    @media(max-width:760px){ .nav-links{display:none} .nav-container{padding:0 20px} }
+  </style>
+</head>
+<body class="form-page">
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="42" cy="46" r="28" fill="none" stroke="#c8a84b" stroke-width="3"/>
+            <ellipse cx="42" cy="46" rx="12" ry="28" fill="none" stroke="#c8a84b" stroke-width="2"/>
+            <line x1="14" y1="46" x2="70" y2="46" stroke="#c8a84b" stroke-width="2"/>
+            <line x1="17" y1="33" x2="67" y2="33" stroke="#c8a84b" stroke-width="1.5"/>
+            <line x1="17" y1="59" x2="67" y2="59" stroke="#c8a84b" stroke-width="1.5"/>
+            <g transform="translate(52,14) rotate(40)">
+              <path d="M0 0 L-6 4 L0 2 L6 4 Z" fill="#ffffff"/>
+              <path d="M-3 2 L-6 7 L0 5 Z" fill="rgba(255,255,255,0.6)"/>
+              <path d="M3 2 L6 7 L0 5 Z" fill="rgba(255,255,255,0.6)"/>
+            </g>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-main">EXPROVE</span>
+          <span class="logo-sub">PASSPORT LIMITED</span>
+        </div>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <a href="index.html#apply" class="btn-nav">Apply Now</a>
+    </div>
+  </header>
+
+  <section class="form-hero">
+    <div class="form-hero-inner">
+      <h1>Passport<br/><em>Renewal</em></h1>
+      <p>Renewing an expired or soon-to-expire passport? Just your personal information below — choose a processing package and complete payment.</p>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <div class="form-wrap">
+      <div class="form-card">
+
+        <div class="doc-letterhead">
+          <div>
+            <div class="doc-letterhead-brand">Exprove Passport Limited<span>Management System</span></div>
+            <div class="doc-letterhead-contact">
+              📍 Ashanti Mampong, Ashanti Region, Ghana<br/>
+              📞 0500 639 478 / 0599 230 475<br/>
+              ✉️ eprovepassportlimited.2026@gmail.com
+            </div>
+          </div>
+          <div class="doc-letterhead-tag">
+            <div class="doc-letterhead-tag-main">Passport Renewal</div>
+            <div class="doc-letterhead-tag-sub">Renewal Application Form</div>
+            <div class="doc-letterhead-ref">Submitted online &nbsp;·&nbsp; <b id="todayDate"></b></div>
+          </div>
+        </div>
+
+        <div class="doc-notice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <p><strong>Important:</strong> Complete all sections marked <span class="req">*</span>. This form only needs your personal information — no need to redo residential, education, guarantor, or witness details for a renewal.</p>
+        </div>
+
+        <div class="photo-req-box">
+          <div class="photo-req-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            Passport<br/>Photo Here
+          </div>
+          <div class="photo-req-text">
+            <h4>Photo Requirements</h4>
+            <ul>
+              <li>Recent passport-size photograph (35mm × 45mm)</li>
+              <li>Plain white or light grey background</li>
+              <li>Full face, front view, eyes open</li>
+              <li>No glasses, hats or head coverings (except religious)</li>
+              <li>Taken within the last 6 months</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="photo-upload-box">
+          <div class="photo-upload-circle" id="photoPreviewCircle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="photo-upload-info">
+            <h4>Client Passport Photo</h4>
+            <p>Upload a clear passport-size photo of yourself. Accepted: JPG, PNG, WEBP — max 5 MB. This is just a preview for you — after payment, please also send the actual photo via WhatsApp or email.</p>
+            <label class="photo-upload-btn" for="photoInput">+ Choose Photo</label>
+            <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp"/>
+          </div>
+        </div>
+
+        <div class="doc-upload-grid">
+          <div class="doc-upload-item">
+            <div class="doc-upload-preview" id="ghanaCardPreview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><circle cx="7" cy="15" r="1.4"/></svg>
+            </div>
+            <h4>Ghana Card</h4>
+            <p>Upload a clear photo or scan of your Ghana Card (front side). JPG, PNG or PDF — max 5 MB.</p>
+            <label class="photo-upload-btn" for="ghanaCardInput">+ Choose File</label>
+            <input type="file" id="ghanaCardInput" accept="image/jpeg,image/png,image/webp,application/pdf"/>
+          </div>
+          <div class="doc-upload-item">
+            <div class="doc-upload-preview" id="birthCertPreview">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <h4>Birth Certificate</h4>
+            <p>Upload a clear photo or scan of your birth certificate. JPG, PNG or PDF — max 5 MB.</p>
+            <label class="photo-upload-btn" for="birthCertInput">+ Choose File</label>
+            <input type="file" id="birthCertInput" accept="image/jpeg,image/png,image/webp,application/pdf"/>
+          </div>
+        </div>
+        <p class="tier-note" style="margin-top:-16px;">These previews are for you only — after payment, please also send these documents via WhatsApp or email so we can process your application.</p>
+
+        <div id="formSuccess" class="form-message success">
+          <strong>🎉 Application Submitted!</strong>
+          <p>Your payment was successful and your application has been received. We'll contact you within 24 hours.</p>
+        </div>
+        <div id="formError" class="form-message error">
+          <strong>⚠️ Something went wrong</strong>
+          <p id="errorText">Please try again or contact us directly.</p>
+        </div>
+
+        <form id="passportRenewalForm">
+
+          <!-- BLOCK 1: Personal Information -->
+          <div class="form-block">
+            <div class="form-block-title"><span class="form-block-num">1</span> Personal Information</div>
+            <div class="form-group full">
+              <label>Full Name <span class="req">*</span></label>
+              <input type="text" name="full_name" required placeholder="As it appears on your Ghana Card / Birth Certificate"/>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Date of Birth <span class="req">*</span></label>
+                <input type="date" name="dob" required/>
+              </div>
+              <div class="form-group">
+                <label>Place of Birth <span class="req">*</span></label>
+                <input type="text" name="pob" required placeholder="Town / City, Region"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Nationality <span class="req">*</span></label>
+                <input type="text" name="nationality" value="Ghanaian" required/>
+              </div>
+              <div class="form-group">
+                <label>Ghana Card Number <span class="req">*</span></label>
+                <input type="text" name="ghana_card" required placeholder="GHA-XXXXXXXXX-X"/>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label>Previous / Current Passport Number <span class="req">*</span></label>
+              <input type="text" name="previous_passport_number" required placeholder="e.g. G1234567"/>
+            </div>
+            <div class="form-group full">
+              <label>Gender <span class="req">*</span></label>
+              <div class="radio-pills">
+                <div class="radio-pill"><input type="radio" id="g_male" name="gender" value="Male" required/><label for="g_male">Male</label></div>
+                <div class="radio-pill"><input type="radio" id="g_female" name="gender" value="Female"/><label for="g_female">Female</label></div>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label>Marital Status <span class="req">*</span></label>
+              <div class="radio-pills">
+                <div class="radio-pill"><input type="radio" id="m_single" name="marital_status" value="Single" required/><label for="m_single">Single</label></div>
+                <div class="radio-pill"><input type="radio" id="m_married" name="marital_status" value="Married"/><label for="m_married">Married</label></div>
+                <div class="radio-pill"><input type="radio" id="m_divorced" name="marital_status" value="Divorced"/><label for="m_divorced">Divorced</label></div>
+                <div class="radio-pill"><input type="radio" id="m_widow" name="marital_status" value="Widow"/><label for="m_widow">Widow</label></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" required placeholder="your@email.com"/>
+              </div>
+              <div class="form-group">
+                <label>Telephone Number <span class="req">*</span></label>
+                <input type="tel" name="phone" required placeholder="e.g. 0500 639 478"/>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label>Current Occupation <span class="req">*</span></label>
+              <input type="text" name="occupation" required placeholder="e.g. Teacher, Trader, Student"/>
+            </div>
+          </div>
+
+          <!-- BLOCK 2: Service Selection -->
+          <div class="form-block">
+            <div class="form-block-title"><span class="form-block-num">2</span> Service Selection</div>
+            <div class="tier-grid">
+              <div class="tier-card">
+                <input type="radio" id="tier1" name="service_tier" value="Regular 32-Page Booklet (1 Month)" data-price="700" data-label="Regular 32pg – 1 Month" required/>
+                <label for="tier1">
+                  <span class="tier-check"></span>
+                  <div class="tier-name">Regular — 32-Page Booklet</div>
+                  <div class="tier-price">GHS 700<span>.00</span></div>
+                  <div class="tier-days">Processing: 1 Month</div>
+                </label>
+              </div>
+              <div class="tier-card">
+                <input type="radio" id="tier2" name="service_tier" value="Regular 48-Page Booklet (1 Month)" data-price="1050" data-label="Regular 48pg – 1 Month"/>
+                <label for="tier2">
+                  <span class="tier-check"></span>
+                  <div class="tier-name">Regular — 48-Page Booklet</div>
+                  <div class="tier-price">GHS 1,050<span>.00</span></div>
+                  <div class="tier-days">Processing: 1 Month</div>
+                </label>
+              </div>
+              <div class="tier-card">
+                <input type="radio" id="tier3" name="service_tier" value="Expedited 32-Page Booklet (15 Working Days)" data-price="1100" data-label="Expedited 32pg – 15 Working Days"/>
+                <label for="tier3">
+                  <span class="tier-check"></span>
+                  <div class="tier-name">Expedited — 32-Page Booklet</div>
+                  <div class="tier-price">GHS 1,100<span>.00</span></div>
+                  <div class="tier-days">Processing: 15 Working Days</div>
+                </label>
+              </div>
+              <div class="tier-card">
+                <input type="radio" id="tier4" name="service_tier" value="Regular 48-Page Booklet (15 Working Days)" data-price="1300" data-label="Regular 48pg – 15 Working Days"/>
+                <label for="tier4">
+                  <span class="tier-check"></span>
+                  <div class="tier-name">Regular — 48-Page Booklet</div>
+                  <div class="tier-price">GHS 1,300<span>.00</span></div>
+                  <div class="tier-days">Processing: 15 Working Days</div>
+                </label>
+              </div>
+              <div class="tier-card">
+                <input type="radio" id="tier5" name="service_tier" value="Emergency Service (48 Hours)" data-price="2500" data-label="Emergency – 48 Hours"/>
+                <label for="tier5">
+                  <span class="tier-check"></span>
+                  <div class="tier-name">Emergency Service</div>
+                  <div class="tier-price">GHS 2,500<span>.00</span></div>
+                  <div class="tier-days">Processing: Within 48 Hours</div>
+                </label>
+              </div>
+            </div>
+            <p class="tier-note">Select the package that suits you — the amount you pay updates automatically.</p>
+
+            <div class="selected-price-strip" id="priceStrip" style="display:none;">
+              <span class="label">Amount to Pay</span>
+              <span class="amount">GHS 0.00</span>
+            </div>
+          </div>
+
+          <!-- BLOCK 3: Payment -->
+          <div class="form-block">
+            <div class="form-block-title"><span class="form-block-num">3</span> Payment</div>
+            <div class="mm-payment-panel">
+              <h4>Mobile Money Payment</h4>
+              <p>Paystack will securely charge one of these lines instantly when you click "Proceed to Payment" below — no need to send money separately.</p>
+              <div class="mm-lines">
+                <div class="mm-line">
+                  <div class="mm-line-network">Telecel (TIGO)</div>
+                  <div class="mm-line-number">0500 539 478</div>
+                  <div class="mm-line-name">Michael Atta Antwi</div>
+                </div>
+                <div class="mm-line">
+                  <div class="mm-line-network">MTN MoMo</div>
+                  <div class="mm-line-number">0599 230 475</div>
+                  <div class="mm-line-name">Michael Atta Antwi</div>
+                </div>
+                <div class="mm-line">
+                  <div class="mm-line-network">GCB Bank</div>
+                  <div class="mm-line-number">7011 0102 45105</div>
+                  <div class="mm-line-name">Michael Atta Antwi</div>
+                </div>
+              </div>
+              <div class="mm-auto-note">Prefer to pay directly to one of these lines instead? You can — just send your Paystack popup reference (or a screenshot) to us on WhatsApp afterward so we can confirm it.</div>
+            </div>
+            <div class="form-row" style="margin-top:18px;">
+              <div class="form-group">
+                <label>Payee's Name <span class="req">*</span></label>
+                <input type="text" name="payee_name" required placeholder="Name of person who made the payment"/>
+              </div>
+              <div class="form-group">
+                <label>Payee's Contact <span class="req">*</span></label>
+                <input type="tel" name="payee_contact" required placeholder="Contact used to make the payment"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="declaration-box">
+            I, the undersigned, hereby declare that all information provided in this application is true, accurate and complete to the best of my knowledge. I understand that any false statement may result in the refusal of my passport application and may be subject to legal action.
+            <div class="declaration-check">
+              <input type="checkbox" id="declare1" required/>
+              <label for="declare1">I confirm the information above is accurate and I agree to the declaration.</label>
+            </div>
+          </div>
+
+          <div class="form-group full" style="margin-top:-6px;">
+            <label>Applicant's Signature <span class="req">*</span></label>
+            <input type="text" name="applicant_signature" required placeholder="Type your full name to sign"/>
+          </div>
+
+          <div class="honeypot">
+            <input type="text" name="website" tabindex="-1" autocomplete="off"/>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            Proceed to Payment
+          </button>
+
+          <div class="whatsapp-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <p><strong>After payment,</strong> please send your passport-sized photo (white background), Ghana Card, and Birth Certificate to us via <a href="https://wa.me/233500639478" target="_blank">WhatsApp</a> or email at <a href="mailto:eprovepassportlimited.2026@gmail.com">eprovepassportlimited.2026@gmail.com</a></p>
+          </div>
+
+        </form>
+
+        <div style="text-align:center">
+          <a href="passport-application.html" class="btn-back">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back to Passport Services
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="biz-footer">
+    <p>© 2026 Exprove Passport Limited &nbsp;|&nbsp; <a href="index.html">Back to Home</a> &nbsp;|&nbsp; <a href="tel:0500639478">0500 639 478</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-GH', { day: '2-digit', month: 'short', year: 'numeric' });
+    bindTierPricing('service_tier', 'priceStrip');
+    bindPhotoPreview('photoInput', 'photoPreviewCircle');
+    bindFilePreview('ghanaCardInput', 'ghanaCardPreview');
+    bindFilePreview('birthCertInput', 'birthCertPreview');
+    document.getElementById('passportRenewalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleServiceForm(this, 'Passport Renewal', 2500);
+    });
+  </script>
+
+</body>
+</html>

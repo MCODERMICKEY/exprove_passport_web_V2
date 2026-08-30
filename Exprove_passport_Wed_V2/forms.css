@@ -1,0 +1,634 @@
+/* ══════════════════════════════════════════════════════
+   EXPROVE FORMS — Shared Styles
+   Green #1a5c2a + Gold #c8a84b palette
+══════════════════════════════════════════════════════ */
+
+.form-page {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream, #f9f7f2);
+  color: var(--text, #1e3a26);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Form Hero ── */
+.form-hero {
+  background: linear-gradient(150deg, #1a5c2a 0%, #0d2e14 50%, #091a0c 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 100px 32px 80px;
+  text-align: center;
+}
+.form-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(200,168,75,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(26,92,42,0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+.form-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(26,92,42,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,92,42,0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+.form-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.form-hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.08;
+  margin-bottom: 14px;
+}
+.form-hero h1 em { color: #e2c97e; font-style: italic; }
+.form-hero p {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Form Container ── */
+.form-section {
+  padding: 60px 32px 100px;
+  background: #f9f7f2;
+}
+.form-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.form-card {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 48px 44px;
+  box-shadow: 0 20px 80px rgba(13,31,18,0.12);
+  border: 1px solid rgba(26,92,42,0.08);
+}
+
+/* ── Form Sections ── */
+.form-block {
+  margin-bottom: 40px;
+}
+.form-block-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1e3a26;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(200,168,75,0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.form-block-num {
+  width: 28px; height: 28px;
+  background: linear-gradient(135deg, #1a5c2a, #2d7a3e);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Form Groups ── */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group.full {
+  grid-column: 1 / -1;
+}
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #1e3a26;
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+.form-group label .req { color: #c0392b; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1.5px solid rgba(26,92,42,0.18);
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.94rem;
+  color: #1e3a26;
+  background: #f9f7f2;
+  outline: none;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #2d7a3e;
+  box-shadow: 0 0 0 3px rgba(45,122,62,0.1);
+  background: #ffffff;
+}
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%233d5c46' stroke-width='2'%3E%3Cpolyline points='4 6 8 10 12 6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: #9ab0a0; }
+
+/* ── Payment Box ── */
+.payment-box {
+  background: linear-gradient(135deg, #eaf5ec, #f9f7f2);
+  border: 2px solid rgba(26,92,42,0.15);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.payment-box h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1a5c2a;
+  margin-bottom: 8px;
+}
+.payment-amount {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #c8a84b;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.payment-amount span {
+  font-size: 1.2rem;
+  color: #6a8a72;
+  font-weight: 400;
+}
+.payment-note {
+  font-size: 0.85rem;
+  color: #6a8a72;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.payment-methods {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1.5px solid rgba(26,92,42,0.12);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #3d5c46;
+}
+.payment-method svg { width: 18px; height: 18px; }
+
+/* ── Buttons ── */
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #1a5c2a, #2d7a3e);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 24px rgba(26,92,42,0.3);
+}
+.btn-submit:hover {
+  background: linear-gradient(135deg, #2d7a3e, #3a9c50);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(26,92,42,0.4);
+}
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #6a8a72;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s ease;
+  margin-top: 24px;
+}
+.btn-back:hover { color: #1a5c2a; }
+
+/* ── Success / Error Messages ── */
+.form-message {
+  display: none;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.form-message.show { display: block; }
+.form-message.success {
+  background: #eaf5ec;
+  border: 1px solid rgba(26,92,42,0.2);
+  color: #1a5c2a;
+}
+.form-message.error {
+  background: #fdeaea;
+  border: 1px solid rgba(192,57,43,0.2);
+  color: #c0392b;
+}
+.form-message strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+.form-message p {
+  font-size: 0.9rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── WhatsApp Note ── */
+.whatsapp-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: rgba(200,168,75,0.08);
+  border: 1.5px solid rgba(200,168,75,0.25);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-top: 20px;
+}
+.whatsapp-note svg {
+  width: 24px; height: 24px;
+  stroke: #25d366;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.whatsapp-note p {
+  font-size: 0.88rem;
+  color: #3d5c46;
+  line-height: 1.7;
+  margin: 0;
+}
+.whatsapp-note a {
+  color: #1a5c2a;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ── Document Letterhead (mirrors the printed application forms) ── */
+.doc-letterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #1a5c2a, #0d2e14);
+  border-radius: 18px;
+  padding: 26px 28px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+.form-card.theme-maroon .doc-letterhead { background: linear-gradient(135deg, #7a3324, #4a1f16); }
+.doc-letterhead-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.5px; }
+.doc-letterhead-brand span { display:block; font-family:'Outfit',sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 3px; color: rgba(255,255,255,0.55); text-transform: uppercase; margin-top: 3px; }
+.doc-letterhead-contact { margin-top: 10px; font-size: 0.78rem; color: rgba(255,255,255,0.7); line-height: 1.9; }
+.doc-letterhead-tag { text-align: right; }
+.doc-letterhead-tag-main { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 700; color: #e2c97e; letter-spacing: 1px; text-transform: uppercase; }
+.form-card.theme-maroon .doc-letterhead-tag-main { color: #f0c9a0; }
+.doc-letterhead-tag-sub { font-size: 0.68rem; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+.doc-letterhead-ref { margin-top: 12px; font-size: 0.74rem; color: rgba(255,255,255,0.55); }
+.doc-letterhead-ref b { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+/* ── Important notice strip ── */
+.doc-notice {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: rgba(200,168,75,0.1);
+  border: 1px solid rgba(200,168,75,0.3);
+  border-radius: 14px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  font-size: 0.85rem;
+  color: #3d5c46;
+  line-height: 1.6;
+}
+.doc-notice svg { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; color: #a08530; }
+.doc-notice strong { color: #1e3a26; }
+
+/* ── Radio pill group (Gender / Marital status / Where born, etc.) ── */
+.radio-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.radio-pill {
+  position: relative;
+}
+.radio-pill input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.radio-pill label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px;
+  border: 1.5px solid rgba(26,92,42,0.18);
+  border-radius: 50px;
+  font-size: 0.86rem; font-weight: 600; color: #3d5c46;
+  cursor: pointer; transition: 0.25s ease;
+  background: #f9f7f2; margin: 0;
+}
+.radio-pill input:checked + label {
+  background: linear-gradient(135deg, #1a5c2a, #2d7a3e);
+  border-color: #1a5c2a; color: #fff;
+}
+.form-card.theme-maroon .radio-pill input:checked + label {
+  background: linear-gradient(135deg, #7a3324, #9c4a34); border-color: #7a3324;
+}
+
+/* ── Section-badge two-tone divider (mirrors "FIRST OWNER" bands in the PDF) ── */
+.form-divider-band {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #2d7a3e, #1a5c2a);
+  color: #fff;
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin: 40px 0 28px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 700; letter-spacing: 0.5px;
+}
+.form-card.theme-maroon .form-divider-band { background: linear-gradient(135deg, #9c4a34, #7a3324); }
+.form-divider-band .badge-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Outfit', sans-serif; font-size: 0.8rem; flex-shrink: 0;
+}
+
+/* ── Checklist (Documents Submitted) ── */
+.checklist-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 20px;
+  margin-bottom: 8px;
+}
+.checklist-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(26,92,42,0.15);
+  border-radius: 12px;
+  background: #f9f7f2;
+  font-size: 0.86rem; color: #3d5c46; font-weight: 500;
+  cursor: pointer; transition: 0.25s ease;
+}
+.checklist-item:has(input:checked) { background: #eaf5ec; border-color: #1a5c2a; color: #1a5c2a; font-weight: 600; }
+.checklist-item input { width: 17px; height: 17px; accent-color: #1a5c2a; flex-shrink: 0; cursor: pointer; }
+.form-card.theme-maroon .checklist-item:has(input:checked) { background: #f6ece7; border-color: #7a3324; color: #7a3324; }
+.form-card.theme-maroon .checklist-item input { accent-color: #7a3324; }
+
+/* ── Simple flat price display (used on Missing Passport / same-fee services) ── */
+.price-note {
+  text-align: center; font-size: 0.85rem; color: #6a8a72; margin-top: -6px; margin-bottom: 20px;
+}
+
+/* ── Declaration box ── */
+.declaration-box {
+  background: rgba(200,168,75,0.08);
+  border: 1.5px solid rgba(200,168,75,0.3);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  font-size: 0.85rem;
+  color: #3d5c46;
+  line-height: 1.7;
+}
+.declaration-check {
+  display: flex; align-items: flex-start; gap: 10px;
+  margin-top: 14px;
+  font-size: 0.85rem; font-weight: 600; color: #1e3a26;
+}
+.declaration-check input { width: 18px; height: 18px; margin-top: 2px; accent-color: #1a5c2a; flex-shrink: 0; cursor: pointer; }
+.form-card.theme-maroon .declaration-check input { accent-color: #7a3324; }
+
+@media (max-width: 700px) {
+  .doc-letterhead { flex-direction: column; }
+  .doc-letterhead-tag { text-align: left; }
+  .checklist-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Supporting document uploads (Ghana Card / Birth Certificate) ── */
+.doc-upload-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin-bottom: 26px;
+}
+.doc-upload-item {
+  background: var(--g-pale, #eaf5ec);
+  border: 1.5px dashed rgba(26,92,42,0.3);
+  border-radius: 16px;
+  padding: 18px; text-align: center;
+}
+.form-card.theme-maroon .doc-upload-item { background: #f6ece7; border-color: rgba(122,51,36,0.3); }
+.doc-upload-preview {
+  width: 100%; height: 100px; border-radius: 10px;
+  background: #fff; border: 1px solid rgba(26,92,42,0.12);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; margin-bottom: 12px; color: #6a8a72;
+}
+.doc-upload-preview img { width: 100%; height: 100%; object-fit: cover; }
+.doc-upload-preview svg { width: 26px; height: 26px; }
+.doc-file-chip { font-size: 0.78rem; color: #1e3a26; font-weight: 700; padding: 0 10px; word-break: break-all; }
+.doc-upload-item h4 { font-size: 0.85rem; font-weight: 700; color: #1e3a26; margin-bottom: 3px; }
+.doc-upload-item p { font-size: 0.72rem; color: #6a8a72; margin-bottom: 12px; line-height: 1.4; }
+.doc-upload-item input[type="file"] { display: none; }
+
+/* ── Honeypot ── */
+.honeypot { display: none !important; }
+
+/* ── Photo Requirements box (mirrors the printed Passport Application form) ── */
+.photo-req-box {
+  display: flex; gap: 20px; align-items: flex-start;
+  background: #f9f7f2;
+  border: 1px solid rgba(26,92,42,0.12);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+}
+.photo-req-icon {
+  width: 76px; height: 76px; flex-shrink: 0;
+  border: 2px dashed rgba(26,92,42,0.35);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 4px;
+  color: #6a8a72; text-align: center;
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.5px; line-height: 1.3;
+  text-transform: uppercase;
+}
+.photo-req-icon svg { width: 22px; height: 22px; }
+.photo-req-text h4 { font-size: 0.9rem; font-weight: 700; color: #1e3a26; margin-bottom: 8px; }
+.photo-req-text ul { margin: 0; padding-left: 18px; }
+.photo-req-text li { font-size: 0.82rem; color: #3d5c46; line-height: 1.85; }
+
+/* ── Client photo upload widget (preview only — file is not stored on our server) ── */
+.photo-upload-box {
+  display: flex; gap: 18px; align-items: center;
+  background: var(--g-pale, #eaf5ec);
+  border: 1.5px dashed rgba(26,92,42,0.3);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin-bottom: 26px;
+}
+.form-card.theme-maroon .photo-upload-box { background: #f6ece7; border-color: rgba(122,51,36,0.3); }
+.photo-upload-circle {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  border: 2px dashed rgba(26,92,42,0.4);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: #fff; color: #6a8a72;
+}
+.form-card.theme-maroon .photo-upload-circle { border-color: rgba(122,51,36,0.4); }
+.photo-upload-circle img { width: 100%; height: 100%; object-fit: cover; }
+.photo-upload-circle svg { width: 26px; height: 26px; }
+.photo-upload-info { flex: 1; }
+.photo-upload-info h4 { font-size: 0.88rem; font-weight: 700; color: #1e3a26; margin-bottom: 3px; }
+.photo-upload-info p { font-size: 0.78rem; color: #6a8a72; line-height: 1.5; margin-bottom: 10px; }
+.photo-upload-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 50px;
+  background: linear-gradient(135deg, #1a5c2a, #2d7a3e); color: #fff;
+  font-size: 0.78rem; font-weight: 700; cursor: pointer; border: none;
+  transition: 0.25s ease;
+}
+.form-card.theme-maroon .photo-upload-btn { background: linear-gradient(135deg, #7a3324, #9c4a34); }
+.photo-upload-btn:hover { opacity: 0.9; }
+.photo-upload-box input[type="file"] { display: none; }
+
+/* ── Service tier picker (mirrors the printed price/package boxes) ── */
+.tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-bottom: 22px; }
+.tier-card { position: relative; }
+.tier-card input {
+  position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; z-index: 2;
+}
+.tier-card label {
+  display: block; padding: 18px 18px 16px;
+  border: 1.5px solid rgba(26,92,42,0.16);
+  border-radius: 14px; background: #fff;
+  cursor: pointer; transition: 0.25s ease; height: 100%;
+}
+.tier-card input:checked + label {
+  border-color: #1a5c2a; background: #f3faf4;
+  box-shadow: 0 6px 22px rgba(26,92,42,0.15);
+}
+.form-card.theme-maroon .tier-card input:checked + label { border-color: #7a3324; background: #fbf3f0; box-shadow: 0 6px 22px rgba(122,51,36,0.15); }
+.tier-check {
+  position: absolute; top: 14px; right: 14px;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid rgba(26,92,42,0.25); background: #fff;
+}
+.tier-card input:checked ~ .tier-check,
+.tier-card label .tier-check { display: none; }
+.tier-card input:checked + label .tier-check { display: block; background: #1a5c2a; border-color: #1a5c2a; }
+.tier-card input:checked + label .tier-check::after {
+  content: ''; display: block; width: 5px; height: 9px;
+  border-right: 2px solid #fff; border-bottom: 2px solid #fff;
+  transform: rotate(45deg); margin: 2px auto 0 6px;
+}
+.form-card.theme-maroon .tier-card input:checked + label .tier-check { background: #7a3324; border-color: #7a3324; }
+.tier-name { font-size: 0.82rem; font-weight: 700; color: #1e3a26; margin-bottom: 8px; padding-right: 22px; line-height: 1.3; }
+.tier-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; color: #1a5c2a; line-height: 1; }
+.tier-price span { font-size: 0.9rem; font-weight: 500; }
+.form-card.theme-maroon .tier-price { color: #7a3324; }
+.tier-days { font-size: 0.74rem; color: #6a8a72; margin-top: 6px; font-weight: 600; }
+.tier-note {
+  font-size: 0.76rem; color: #8a9c8e; margin: -10px 0 24px; text-align: center;
+}
+
+/* ── Live selected-price summary strip ── */
+.selected-price-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  background: linear-gradient(135deg, #1a5c2a, #123c1c);
+  color: #fff; border-radius: 14px; padding: 16px 22px; margin-bottom: 26px;
+  flex-wrap: wrap; gap: 10px;
+}
+.form-card.theme-maroon .selected-price-strip { background: linear-gradient(135deg, #7a3324, #4a1f16); }
+.selected-price-strip .label { font-size: 0.76rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.6); font-weight: 700; }
+.selected-price-strip .amount { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; }
+
+/* ── Mobile money payment lines panel (mirrors the printed payment section) ── */
+.mm-payment-panel {
+  background: #f3faf4; border: 1px solid rgba(26,92,42,0.15);
+  border-radius: 16px; padding: 20px 22px; margin-bottom: 26px;
+}
+.form-card.theme-maroon .mm-payment-panel { background: #f9f2ef; border-color: rgba(122,51,36,0.18); }
+.mm-payment-panel h4 {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px;
+  color: #1e3a26; text-transform: uppercase; margin-bottom: 4px;
+}
+.mm-payment-panel > p { font-size: 0.78rem; color: #6a8a72; margin-bottom: 14px; }
+.mm-lines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.mm-line { background: #fff; border-radius: 12px; padding: 14px 16px; border: 1px solid rgba(26,92,42,0.1); }
+.mm-line-network { font-size: 0.72rem; font-weight: 700; color: #6a8a72; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.mm-line-number { font-family: 'SF Mono', monospace; font-size: 0.98rem; font-weight: 700; color: #1e3a26; }
+.mm-line-name { font-size: 0.74rem; color: #8a9c8e; margin-top: 2px; }
+.mm-payment-panel .mm-auto-note {
+  margin-top: 14px; font-size: 0.78rem; color: #3d5c46; line-height: 1.6;
+  background: rgba(255,255,255,0.6); border-radius: 10px; padding: 12px 14px;
+}
+
+@media (max-width: 700px) {
+  .tier-grid { grid-template-columns: 1fr; }
+  .mm-lines { grid-template-columns: 1fr; }
+  .photo-req-box { flex-direction: column; align-items: flex-start; }
+  .photo-upload-box { flex-direction: column; text-align: center; }
+}
+
+/* ── Subsection bar (Father's Details / First Guarantor, etc.) ── */
+.subsection-bar {
+  background: #eaf5ec;
+  border-left: 4px solid #1a5c2a;
+  padding: 11px 16px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #1e3a26;
+  border-radius: 6px;
+  margin: 24px 0 16px;
+}
+.form-block > .subsection-bar:first-child { margin-top: 0; }
+.form-card.theme-maroon .subsection-bar { background: #f6ece7; border-left-color: #7a3324; color: #4a1f16; }
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .form-hero { padding: 70px 20px 50px; }
+  .form-section { padding: 40px 20px 60px; }
+  .form-card { padding: 28px 22px; border-radius: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .payment-amount { font-size: 2.4rem; }
+}
