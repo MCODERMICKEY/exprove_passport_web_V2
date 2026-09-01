@@ -465,7 +465,7 @@ function closeMobile() {
 
 // ── Paystack Configuration ──
 // ⚠️ REPLACE THIS with your actual Paystack Public Key from dashboard.paystack.com
-const PAYSTACK_PUBLIC_KEY = 'pk_test_your_paystack_public_key_here';
+const PAYSTACK_PUBLIC_KEY = 'pk_test_f95022e3fc5f04319bc812082a3f953317052aec';
 
 const EMAILJS_SERVICE_ID_SVC  = 'service_zce0q0u';
 const EMAILJS_TEMPLATE_ID_SVC = 'template_yvy3prj';
