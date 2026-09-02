@@ -332,6 +332,14 @@
       cursor: pointer; transition: var(--transition);
     }
     .btn-view:hover { background: var(--g-dark); color: var(--white); }
+    .btn-delete {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #fdecea; color: #c0392b;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition); flex-shrink: 0;
+    }
+    .btn-delete:hover { background: #c0392b; color: #fff; }
 
     .empty-state, .loading-state { text-align: center; padding: 90px 20px; }
     .empty-state svg { width: 74px; height: 74px; stroke: var(--text-lt); opacity: 0.3; margin-bottom: 20px; }
@@ -393,7 +401,7 @@
     }
     .modal-footer {
       padding: 16px 28px 26px;
-      display: flex; gap: 10px; justify-content: flex-end;
+      display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;
     }
     .modal-btn {
       padding: 11px 22px; border-radius: 10px;
@@ -467,7 +475,7 @@
       </div>
       <button class="login-btn" onclick="doLogin()">Sign In</button>
       <div class="login-error" id="loginError">Incorrect password. Please try again.</div>
-      <p class="login-hint">Protected area &nbsp;·&nbsp; Data syncs from <strong>Vercel KV</strong> once connected, so you can sign in from any device. See <strong>SETUP_GUIDE.txt</strong> to connect storage.</p>
+      <p class="login-hint">Protected area &nbsp;·&nbsp; Data syncs from <strong>Upstash Redis</strong> once connected, so you can sign in from any device. See <strong>SETUP_GUIDE.txt</strong> to connect storage.</p>
     </div>
   </div>
 
@@ -592,6 +600,9 @@
         <button class="modal-btn modal-btn-primary" onclick="printDetails()">
           🖨️ Print / Save PDF
         </button>
+        <button class="modal-btn" style="background:#fdecea;color:#c0392b;" onclick="deleteClientData()">
+          🗑️ Delete All From This Client
+        </button>
       </div>
     </div>
   </div>
@@ -640,7 +651,7 @@
        /api/submissions requests (cleared on logout / tab
        close). Change it any time with "Change Password"
        in the header — see SETUP_GUIDE.txt to connect
-       Vercel KV first, which is what makes changes stick.
+       Upstash Redis first, which is what makes changes stick.
     ══════════════════════════════════════════════════ */
     let allData = [];
     let filteredData = [];
@@ -997,7 +1008,7 @@
               <line x1="12" y1="17" x2="12" y2="21"/>
             </svg>
             <h3>No submissions yet</h3>
-            <p>When clients fill out your forms, their information will appear here — from any device, once Vercel KV is connected. See SETUP_GUIDE.txt.</p>
+            <p>When clients fill out your forms, their information will appear here — from any device, once Upstash Redis is connected. See SETUP_GUIDE.txt.</p>
           </div>
         `;
         return;
@@ -1034,7 +1045,7 @@
               <th class="${getSortClass('amount')}" onclick="sortData('amount', null, true)">Amount <span class="sort-icon">&#8645;</span></th>
               <th class="${getSortClass('status')}" onclick="sortData('status', null, true)">Status <span class="sort-icon">&#8645;</span></th>
               <th class="${getSortClass('date')}" onclick="sortData('date', null, true)">Date <span class="sort-icon">&#8645;</span></th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -1050,7 +1061,14 @@
             <td class="td-amount">${item.amount > 0 ? 'GHS ' + parseFloat(item.amount).toLocaleString() : '&mdash;'}</td>
             <td>${getStatusHtml(item.status)}</td>
             <td class="td-date">${escapeHtml(item.date)}</td>
-            <td><button class="btn-view" onclick="viewDetails('${String(item.id).replace(/'/g,"\\'")}')">View</button></td>
+            <td>
+              <div style="display:flex;gap:6px;">
+                <button class="btn-view" onclick="viewDetails('${String(item.id).replace(/'/g,"\\'")}')">View</button>
+                <button class="btn-delete" onclick="deleteSubmission('${String(item.id).replace(/'/g,"\\'")}')" title="Delete this submission">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              </div>
+            </td>
           </tr>
         `;
       });
@@ -1066,6 +1084,11 @@
     function buildDetailRows(item) {
       const data = item.raw.data || {};
       const excludeKeys = ['full_name','first_owner_name','owner_name','business_name','company_name_1','applicant_name','email','first_owner_email','phone','website','message'];
+      const labelOverrides = {
+        photo_url: 'Client Passport Photo',
+        ghana_card_url: 'Ghana Card',
+        birth_cert_url: 'Birth Certificate'
+      };
       const rows = [
         { label: 'Client', value: item.name },
         { label: 'Email', value: item.email },
@@ -1074,7 +1097,7 @@
 
       for (const [key, value] of Object.entries(data)) {
         if (excludeKeys.includes(key) || !value) continue;
-        const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        const label = labelOverrides[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
         rows.push({ label, value: String(value) });
       }
 
@@ -1102,14 +1125,14 @@
       let detailsHtml = rows.map(r => `
         <div class="detail-row">
           <div class="detail-label">${escapeHtml(r.label)}</div>
-          <div class="detail-value">${escapeHtml(String(r.value))}</div>
+          <div class="detail-value">${formatDetailValue(r.value)}</div>
         </div>
       `).join('');
 
       detailsHtml += `
         <div class="detail-row">
           <div class="detail-label">Data Source</div>
-          <div class="detail-value">${item.source === 'cloud' ? 'Cloud (Vercel KV)' : 'This browser (local)'}</div>
+          <div class="detail-value">${item.source === 'cloud' ? 'Cloud (Upstash Redis)' : 'This browser (local)'}</div>
         </div>
       `;
 
@@ -1139,7 +1162,7 @@
       const rows = buildDetailRows(item);
 
       const rowsHtml = rows.map(r => `
-        <tr><td class="lbl">${escapeHtml(r.label)}</td><td class="val">${escapeHtml(String(r.value))}</td></tr>
+        <tr><td class="lbl">${escapeHtml(r.label)}</td><td class="val">${formatDetailValue(r.value)}</td></tr>
       `).join('');
 
       const win = window.open('', '_blank', 'width=850,height=1000');
@@ -1198,6 +1221,80 @@
       setTimeout(() => { win.focus(); win.print(); }, 350);
     }
 
+    /* ── Removes a submission from this browser's localStorage
+       backup (applications + inquiries), if it's stored there. ── */
+    function removeFromLocalStorage(id) {
+      ['exprove_applications', 'exprove_inquiries'].forEach((key) => {
+        try {
+          const list = JSON.parse(localStorage.getItem(key) || '[]');
+          const filtered = list.filter((rec) => String(rec.id) !== String(id));
+          if (filtered.length !== list.length) {
+            localStorage.setItem(key, JSON.stringify(filtered));
+          }
+        } catch (err) { /* ignore malformed local data */ }
+      });
+    }
+
+    /* ── Deletes a single submission — from Upstash (if connected)
+       and from this browser's local backup. Used by the row-level
+       trash icon in the table. ── */
+    async function deleteSubmission(id) {
+      const item = allData.find((d) => String(d.id) === String(id));
+      if (!item) return;
+
+      if (!confirm(`Delete this submission from ${item.name} (${item.service})? This cannot be undone.`)) return;
+
+      try {
+        await fetch('/api/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': currentAdminPassword() },
+          body: JSON.stringify({ id })
+        });
+      } catch (err) {
+        // Even if the cloud delete fails (e.g. offline), still clear the local copy below
+      }
+
+      removeFromLocalStorage(id);
+      showToast('Submission deleted.');
+      loadData();
+    }
+
+    /* ── Deletes EVERY submission from the same client as the one
+       currently open in the detail modal — matched by email or
+       phone, whichever the record has. Used by "Delete All From
+       This Client" in the modal footer. ── */
+    async function deleteClientData() {
+      if (!currentDetailItem) return;
+      const ref = currentDetailItem;
+
+      const matches = allData.filter((d) =>
+        (ref.email && ref.email !== 'N/A' && d.email === ref.email) ||
+        (ref.phone && ref.phone !== 'N/A' && d.phone === ref.phone)
+      );
+      if (matches.length === 0) {
+        showToast('Nothing else found for this client.');
+        return;
+      }
+
+      if (!confirm(`Delete ALL ${matches.length} submission(s) from ${ref.name}? This cannot be undone.`)) return;
+
+      const ids = matches.map((m) => m.id);
+      try {
+        await fetch('/api/delete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-password': currentAdminPassword() },
+          body: JSON.stringify({ ids })
+        });
+      } catch (err) {
+        // Even if the cloud delete fails (e.g. offline), still clear the local copies below
+      }
+
+      ids.forEach((id) => removeFromLocalStorage(id));
+      closeModal();
+      showToast(`Deleted ${matches.length} submission(s) from ${ref.name}.`);
+      loadData();
+    }
+
     function exportCSV() {
       if (filteredData.length === 0) {
         showToast('No data to export');
@@ -1244,6 +1341,19 @@
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    /* Renders an uploaded-file URL (Client Photo / Ghana Card / Birth
+       Certificate) as a clickable "View File" link; everything else
+       is shown as plain escaped text. Used by both the on-screen
+       modal and the printable PDF view. */
+    function formatDetailValue(value) {
+      const str = String(value);
+      if (/^https?:\/\//i.test(str)) {
+        const safeUrl = escapeHtml(str);
+        return `<a href="${safeUrl}" target="_blank" rel="noopener" style="color:var(--g-dark,#1a5c2a);font-weight:700;text-decoration:underline;">View File ↗</a>`;
+      }
+      return escapeHtml(str);
     }
 
     document.addEventListener('keydown', (e) => {
